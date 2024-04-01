@@ -4,16 +4,33 @@ import { Text, SafeAreaView, StyleSheet, StatusBar } from "react-native";
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar hidden={true} backgroundColor={"transparent"} translucent />
+      <StatusBar hidden={true} translucent />
       <Text style={styles.paragraph}>
-        Open this snack on an android device with a punchole camera or notch to
-        see the black bar where the status bar would usually be at the top of
-        the screen.
+        This issue has been fixed with a config written by Kudo!
+      </Text>
+      <Text style={styles.paragraph}>To add this fix to your project,</Text>
+      <Text style={styles.blue}>
+        1. Create a `withAndroidDisplayCutout.js` file in your root directory
+        and copy the code over from the one in this project.
+      </Text>
+      <Text style={styles.blue}>
+        2. add `"plugins": [ "./withAndroidDisplayCutout" ]` to your app.js
+      </Text>
+      <Text style={styles.blue}>
+        3. Ensure your StatusBar `hidden` and `translucent` props are set to
+        `true`.
+      </Text>
+      <Text style={styles.blue}>4. run `npx expo run:android`</Text>
+      <Text style={styles.paragraph}>
+        Following the steps above will add AndroidDisplayCutout to your native
+        Android styles.xml file upon prebuild. A prebuild is necessary for this
+        to work as it needs to build from the Android files only.{" "}
       </Text>
       <Text style={styles.paragraph}>
-        This issue also occurs with expo-status-bar and has been present since
-        at least 2021.
+        If it all works, the status bar will not render at all.
       </Text>
+
+      <Text style={styles.paragraph}>Thank you Kudo!</Text>
     </SafeAreaView>
   );
 }
@@ -21,14 +38,17 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     backgroundColor: "#ecf0f1",
-    padding: 8,
   },
   paragraph: {
-    margin: 24,
+    margin: 30,
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  blue: {
+    color: "blue",
+    margin: 10,
+    fontSize: 18,
   },
 });
