@@ -1,11 +1,26 @@
-# Sample Snack app
+# Config Patch for Expo Black Bar
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+This issue has been fixed with a config patch written by Kudo! 
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo cli](https://docs.expo.dev/get-started/installation/#expo-cli)).
+To add this fix to your project
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
+1. Create a `withAndroidDisplayCutout.js` file in your root directory and copy the code over from the file in this repo.
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.dev/c/expo-dev-tools/61) or [Discord](https://chat.expo.dev/).
+2. add the withAndroidDisplayCutout.js to your app.json:
 
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
+`"plugins": [ "./withAndroidDisplayCutout" ]`
+
+
+3. Ensure your StatusBar component props are as follows:
+
+`<StatusBar hidden={true} translucent />`
+
+4. run android prebuild using the following command:
+
+`npx expo run:android`
+
+This will run a prebuild, seperating the Android files into their own folder.
+
+Following the steps above will add AndroidDisplayCutout to your native Android styles.xml file upon prebuild. A prebuild is necessary for this to work as it needs to build from the Android files only.
+
+*If it all works, the status bar will not render at all.*
